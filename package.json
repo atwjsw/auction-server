@@ -1,0 +1,26 @@
+{
+  "name": "auction-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atwjsw/auction-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atwjsw/auction-server/issues"
+  },
+  "homepage": "https://github.com/atwjsw/auction-server#readme",
+  "dependencies": {
+    "@types/express": "^4.11.1",
+    "@types/node": "^9.4.7",
+    "@types/ws": "^4.0.1",
+    "express": "^4.16.2",
+    "ws": "^5.0.0"
+  }
+}
