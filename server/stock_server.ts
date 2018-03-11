@@ -1,5 +1,5 @@
 import * as express from 'express';
-//import {Server} from 'ws';
+import {Server} from 'ws';
 
 const app = express();
 
@@ -21,6 +21,26 @@ app.get('/api/stock/:id', (req, res) => {
 const server = app.listen(8000, 'localhost', ()=> {
     console.log('服务器已经启动，地址是http://localhost:8000');
 });
+
+const subscription = new Set<any>();
+
+const wsServer = new Server({port:8085});
+wsServer.on("connection", websocket => {
+    subscription.add(websocket);
+});
+
+var messageCount = 0;
+
+// 每隔2秒发送message给仍连接的客户端
+setInterval(() => {
+    subscription.forEach(ws => {
+        if(ws.readyState === 1) {
+            ws.send(JSON.stringify({messageCount: messageCount++}));
+        } else {
+            subscription.delete(ws);
+        }
+    })
+}, 2000)
 
 export class Stock {
     constructor (
